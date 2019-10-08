@@ -13,3 +13,26 @@ components:
           type: string
           description: 'A simple description of what went wrong'
           example: 'An Exception encountered while processing your request'
+    PopularTables:
+      type: object
+      properties:
+        database:
+          type: string
+          description: 'popular table database name'
+          example: 'postgres'
+        cluster:
+          type: string
+          description: 'popular table cluster name'
+          example: 'postgres'
+        schema:
+          type: string
+          description: 'popular table schema name'
+          example: 'hogwarts'
+        table_name:
+          type: string
+          description: 'popular table name'
+          example: 'wizards'
+        table_description:
+          type: string
+          description: 'popular table description'
+          example: 'table with all wizards'
