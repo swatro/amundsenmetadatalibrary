@@ -1,0 +1,43 @@
+Gets Column Description
+Gets Column Description
+---
+tags:
+  - 'Column'
+parameters:
+  - name: table_uri
+    in: path
+    type: string
+    schema:
+      type: string
+    required: true
+  - name: column_name
+    in: path
+    type: string
+    schema:
+      type: string
+    required: true
+responses:
+  200:
+    description: Column description
+    content:
+      application/json:
+        schema:
+          type: object
+          name: description
+          properties:
+            description:
+              type: string
+              description: 'Description of column'
+              example: 'column is used for revenue'
+  404:
+    description: Table and/or column not found
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ErrorResponse'
+  500:
+    description: Internal Server Error
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ErrorResponse'

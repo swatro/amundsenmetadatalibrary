@@ -1,0 +1,39 @@
+Updates Column Description
+Updates Column Description
+---
+tags:
+  - 'Column'
+parameters:
+  - name: table_uri
+    in: path
+    type: string
+    schema:
+      type: string
+    required: true
+  - name: column_name
+    in: path
+    type: string
+    schema:
+      type: string
+    required: true
+  - name: body
+    in: body
+    schema:
+      type: object
+      name: description
+      properties:
+        description:
+          type: string
+          description: 'Description of column'
+          example: 'column is used for revenue'
+    required: true
+responses:
+  200:
+    description: No response
+
+  404:
+    description: Table and/or column not found
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/ErrorResponse'
