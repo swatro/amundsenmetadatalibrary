@@ -34,6 +34,8 @@ class Config:
     # The relationalAttribute name of Atlas Entity that identifies the database entity.
     ATLAS_DB_ATTRIBUTE = 'db'
 
+    SWAGGER_ENABLED = False
+
 
 class LocalConfig(Config):
     DEBUG = False
@@ -44,3 +46,11 @@ class LocalConfig(Config):
     PROXY_HOST = os.environ.get('PROXY_HOST', f'bolt://{LOCAL_HOST}')
     PROXY_PORT = os.environ.get('PROXY_PORT', 7687)
     PROXY_CLIENT = PROXY_CLIENTS[os.environ.get('PROXY_CLIENT', 'NEO4J')]
+
+    SWAGGER_ENABLED = True
+    SWAGGER_TEMPLATE_PATH = os.path.join('api', 'swagger_doc', 'template.yml')
+    SWAGGER = {
+        'openapi': '3.0.2',
+        'title': 'Metadata Service',
+        'uiversion': 3
+    }

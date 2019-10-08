@@ -1,0 +1,5 @@
+openapi: '3.0.2'
+info:
+  title: 'Metadata Service'
+  description: 'Used to communicate with Neo4j or Apache Atlas for get metadata.'
+  version: '1.1.12'

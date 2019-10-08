@@ -7,6 +7,7 @@ from typing import Dict, Any  # noqa: F401
 
 from flask import Flask, Blueprint
 from flask_restful import Api
+from flasgger import Swagger
 
 from metadata_service.api.column import ColumnDescriptionAPI
 from metadata_service.api.healthcheck import healthcheck
@@ -21,6 +22,7 @@ from metadata_service.api.user import UserDetailAPI, UserFollowAPI, UserOwnAPI, 
 FLASK_APP_MODULE_NAME = os.getenv('FLASK_APP_MODULE_NAME')
 FLASK_APP_CLASS_NAME = os.getenv('FLASK_APP_CLASS_NAME')
 FLASK_APP_KWARGS_DICT_STR = os.getenv('FLASK_APP_KWARGS_DICT')
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def create_app(*, config_module_class: str) -> Flask:
@@ -95,5 +97,8 @@ def create_app(*, config_module_class: str) -> Flask:
                      '/user/<path:user_id>/read/',
                      '/user/<path:user_id>/read/<resource_type>/<path:table_uri>')
     app.register_blueprint(api_bp)
+
+    if app.config.get('SWAGGER_ENABLED'):
+        Swagger(app, template_file=os.path.join(ROOT_DIR, app.config.get('SWAGGER_TEMPLATE_PATH')), parse=True)
 
     return app
